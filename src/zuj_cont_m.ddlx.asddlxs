@@ -1,0 +1,102 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeName: 'Enrollment',
+  typeNamePlural: 'Enrollments',
+  title: { type: #STANDARD, value: 'bpnumber' },
+  description: { type: #STANDARD, value: 'status_text' }
+}
+@UI.presentationVariant: [{
+  sortOrder: [{ by: 'enrolledon', direction: #DESC }],
+  visualizations: [{ type: #AS_LINEITEM }]
+}]
+annotate entity ZUJ_CONT_C with
+{
+  @UI.facet: [{
+    id:       'ContractDetails',
+    purpose:  #STANDARD,
+    type:     #IDENTIFICATION_REFERENCE,
+    label:    'Enrollment Details',
+    position: 10
+  }]
+
+
+  @UI.selectionField: [{ position: 10 }]  
+  @UI.lineItem:       [{ position: 10, label: 'BP Number' }]
+  @UI.identification: [{ position: 10, label: 'BP Number' }]
+  bpnumber;
+
+  @UI.lineItem:       [{ position: 20, label: 'First Name' }]
+  @UI.identification: [{ position: 20, label: 'First Name' }]
+  firstname;
+
+  @UI.lineItem:       [{ position: 30, label: 'Last Name' }]
+  @UI.identification: [{ position: 30, label: 'Last Name' }]
+  lastname;
+
+  @UI.lineItem:       [{ position: 40, label: 'Email Address' }]
+  @UI.identification: [{ position: 40, label: 'Email Address' }]
+  email;
+
+  @UI.lineItem:       [{ position: 50, label: 'Model Number' }]
+  @UI.identification: [{ position: 50, label: 'Model Number' }]
+  modelnumber;
+
+  @UI.lineItem:       [{ position: 60, label: 'Serial Number' }]
+  @UI.identification: [{ position: 60, label: 'Serial Number' }]
+  serialnumber;
+
+  @UI.selectionField: [{ position: 20 }]
+  @UI.lineItem:       [{ position: 70, label: 'Enrolled On' }]
+  @UI.identification: [{ position: 70, label: 'Enrolled On' }]
+  enrolledon;
+
+  @UI.lineItem:       [{ position: 80, label: 'Cancelled On' }]
+  @UI.identification: [{ position: 80, label: 'Cancelled On' }]
+  cancelledon;
+
+  @UI.selectionField: [{ position: 30 }]
+  @UI.lineItem:       [{ position: 90, label: 'Status', criticality: 'status' }]
+  @UI.identification: [{ position: 90, label: 'Status' }]
+  status;
+
+  @UI.hidden: true
+  status_text;
+
+  @UI.lineItem:       [{ position: 100, label: 'Suspend Start Date' }]
+  @UI.identification: [{ position: 100, label: 'Suspend Start Date' }]
+  suspend_start;
+
+  @UI.lineItem:       [{ position: 110, label: 'Suspend End Date' }]
+  @UI.identification: [{ position: 110, label: 'Suspend End Date' }]
+  suspend_end;
+
+  @UI.lineItem:       [{ position: 120, label: 'Street1' }]
+  @UI.identification: [{ position: 120, label: 'Street1' }]
+  street1;
+
+   @UI.lineItem:       [{ position: 130, label: 'Street2' }]
+  @UI.identification: [{ position: 130, label: 'Street2' }]
+  street2;
+
+  @UI.lineItem:       [{ position: 140, label: 'City' }]
+  @UI.identification: [{ position: 140, label: 'City' }]
+  city;
+
+  @UI.lineItem:       [{ position: 150, label: 'State' }]
+  @UI.identification: [{ position: 150, label: 'State' }]
+  state;
+
+  @UI.lineItem:       [{ position: 160, label: 'Country' }]
+  @UI.identification: [{ position: 160, label: 'Country' }]
+  address_country;
+
+  @UI.lineItem:       [{ position: 170, label: 'Zipcode' }]
+  @UI.identification: [{ position: 170, label: 'Zipcode' }]
+  zipcode;
+
+  @UI.hidden: true
+  last_changed_at;
+
+  @UI.hidden: true
+  local_last_changed_at;
+}

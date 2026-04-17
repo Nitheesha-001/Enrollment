@@ -1,0 +1,42 @@
+managed implementation in class zbp_uj_cont_i unique;
+strict ( 2 );
+with draft;
+define behavior for ZUJ_CONT_I alias Contract
+persistent table zuj_cont
+draft table zuj_cont_d
+lock master
+total etag last_changed_at
+authorization master ( global, instance )
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  field ( readonly ) bpnumber, modelnumber, serialnumber;
+  field ( mandatory ) status, enrolledon;
+  //  Actions
+  action ( features : instance ) CancelEnrollment result [1] $self;
+  action ( features : instance ) SuspendEnrollment parameter ZUJ_CONT_SUSPEND_P result [1] $self;
+  action ( features : instance ) ReactivateEnrollment result [1] $self;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zuj_cont corresponding
+    {
+      bpnumber              = bpnumber;
+      modelnumber           = modelnumber;
+      serialnumber          = serialnumber;
+      country               = country;
+      enrolledon            = enrolledon;
+      cancelledon           = cancelledon;
+      status                = status;
+      suspend_start         = suspend_start;
+      suspend_end           = suspend_end;
+      last_changed_at       = last_changed_at;
+      local_last_changed_at = local_last_changed_at;
+    }
+}
