@@ -20,9 +20,26 @@ annotate entity ZUJ_CONT_C with
   }]
 
 
-  @UI.selectionField: [{ position: 10 }]  
-  @UI.lineItem:       [{ position: 10, label: 'BP Number' }]
-  @UI.identification: [{ position: 10, label: 'BP Number' }]
+  @UI.lineItem: [
+    { position: 10, label: 'BP Number' },
+  
+    { type: #FOR_ACTION,
+      dataAction: 'CancelEnrollment',
+      label: 'Cancel Enrollment',
+      position: 200 },
+ 
+    { type: #FOR_ACTION,
+      dataAction: 'SuspendEnrollment',
+      label: 'Suspend Enrollment',
+      position: 210 },
+
+    { type: #FOR_ACTION,
+      dataAction: 'ReactivateEnrollment',
+      label: 'Reactivate',
+      position: 220 }
+  ]
+  @UI.identification: [{  position: 10, label: 'BP Number' }]
+
   bpnumber;
 
   @UI.lineItem:       [{ position: 20, label: 'First Name' }]
@@ -55,6 +72,12 @@ annotate entity ZUJ_CONT_C with
   cancelledon;
 
   @UI.selectionField: [{ position: 30 }]
+//  @UI.lineItem: [{
+//    position: 90,
+//    label: 'Status',
+//    criticality: 'statusCriticality',    
+//    criticalityRepresentation: #WITH_ICON
+//  }]
   @UI.lineItem:       [{ position: 90, label: 'Status', criticality: 'status' }]
   @UI.identification: [{ position: 90, label: 'Status' }]
   status;

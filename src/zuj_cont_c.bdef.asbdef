@@ -8,6 +8,10 @@ define behavior for ZUJ_CONT_C alias Contract
   use update;
   use delete;
 
+  use action CancelEnrollment;
+  use action SuspendEnrollment;
+  use action ReactivateEnrollment;
+
   use action Activate;
   use action Discard;
   use action Edit;

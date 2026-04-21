@@ -12,18 +12,32 @@ authorization master ( global, instance )
   update;
   delete;
 
-  field ( readonly ) bpnumber, modelnumber, serialnumber;
+  field (readonly ) bpnumber, modelnumber, serialnumber;
   field ( mandatory ) status, enrolledon;
   //  Actions
   action ( features : instance ) CancelEnrollment result [1] $self;
   action ( features : instance ) SuspendEnrollment parameter ZUJ_CONT_SUSPEND_P result [1] $self;
   action ( features : instance ) ReactivateEnrollment result [1] $self;
+  //  Validations
+  validation ValidateStatus on save { field status; }
+  validation ValidateSuspendDates on save { field suspend_start, suspend_end; }
+  validation ValidateCancelDate on save { field cancelledon; }
+
+  //Determinations
+  determination SetInitialStatus on modify { field enrolledon; }
+  determination SetCancelledOn on modify { field status; }
+  determination ClearSuspendDates on modify { field status; }
 
   draft action Activate optimized;
   draft action Discard;
   draft action Edit;
   draft action Resume;
-  draft determine action Prepare;
+  draft determine action Prepare
+  {
+    validation ValidateStatus;
+    validation ValidateSuspendDates;
+    validation ValidateCancelDate;
+  }
 
   mapping for zuj_cont corresponding
     {
