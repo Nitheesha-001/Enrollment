@@ -12,7 +12,7 @@ authorization master ( global, instance )
   update;
   delete;
 
-  field (readonly ) bpnumber, modelnumber, serialnumber;
+  field ( readonly ) bpnumber, modelnumber, serialnumber;
   field ( mandatory ) status, enrolledon;
   //  Actions
   action ( features : instance ) CancelEnrollment result [1] $self;
@@ -52,5 +52,22 @@ authorization master ( global, instance )
       suspend_end           = suspend_end;
       last_changed_at       = last_changed_at;
       local_last_changed_at = local_last_changed_at;
+    }
+
+  mapping for zuj_bp
+    {
+      firstname = firstname;
+      lastname  = lastname;
+      email     = email;
+    }
+
+  mapping for zuj_addr
+    {
+      street1 = street1;
+      street2 = street2;
+      city    = city;
+      state   = state;
+      country = country;
+      zipcode = zipcode;
     }
 }
